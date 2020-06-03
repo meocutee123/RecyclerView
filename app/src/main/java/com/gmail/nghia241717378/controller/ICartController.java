@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ICartController {
     List<Product> getAllProduct();
-    public boolean addToCart(Product product);
-    public List<Product> getShoppingCart();
-    public void clearShoppingCart();
+    boolean addToCart(Product product);
+    List<Product> getShoppingCart();
+    void clearShoppingCart();
 }

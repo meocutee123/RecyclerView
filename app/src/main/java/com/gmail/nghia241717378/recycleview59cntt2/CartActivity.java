@@ -2,8 +2,12 @@ package com.gmail.nghia241717378.recycleview59cntt2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gmail.nghia241717378.controller.ICartController;
 import com.gmail.nghia241717378.model.Product;
@@ -13,6 +17,7 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity {
     TextView txtProduct;
     ICartController iCartController;
+    Button btnDelete, btnPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,29 @@ public class CartActivity extends AppCompatActivity {
 
         iCartController = (ICartController)getApplication();
         addViews();
+        addEvents();
+        placeOrder();
+    }
+
+    private void placeOrder() {
+        btnPlace = findViewById(R.id.btnPlace);
+        btnPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void addEvents() {
+        btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearShoppingCart();
+            }
+        });
     }
 
     private void addViews() {
@@ -43,4 +71,9 @@ public class CartActivity extends AppCompatActivity {
             txtProduct.setText("Emty");
         }
     }
+
+   private void clearShoppingCart(){
+        iCartController.clearShoppingCart();
+       Toast.makeText(getApplicationContext(), "Đã xóa!", Toast.LENGTH_SHORT).show();
+   }
 }

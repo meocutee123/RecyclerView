@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imgCart;
         Product product;
 
-        public ProductViewHolder(@NonNull View itemView) {
+        ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = this.itemView.findViewById(R.id.txtNameSP);
             txtPrice = this.itemView.findViewById(R.id.txtPrice);
@@ -59,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        public void bind(Product p){
+        @SuppressLint("SetTextI18n")
+        void bind(Product p){
 
             this.product = p;
             txtName.setText(p.getName());
-            txtPrice.setText(new Integer(p.getPrice()).toString());
+            txtPrice.setText(Integer.valueOf(p.getPrice()).toString());
             txtDescription.setText(p.getDescription());
         }
 
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    ClipData.Item mnuClose;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     private class Adapter extends RecyclerView.Adapter<ProductViewHolder>{
         List<Product> productList;
 
-        public Adapter(List<Product> productList) {
+        Adapter(List<Product> productList) {
             this.productList = productList;
         }
 
