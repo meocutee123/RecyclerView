@@ -35,8 +35,15 @@ public class CartActivity extends AppCompatActivity {
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Product> shoppingCart;
+                shoppingCart = iCartController.getShoppingCart();
+                int sum = 0;
+                for (Product product : shoppingCart) {
+                    sum += product.getPrice();
+                }
                 iCartController.clearShoppingCart();
                 Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
+                intent.putExtra("Price", sum);
                 startActivity(intent);
             }
         });
@@ -75,7 +82,7 @@ public class CartActivity extends AppCompatActivity {
 
    private void clearShoppingCart(){
         iCartController.clearShoppingCart();
-       Toast.makeText(getApplicationContext(), "Đã xóa!", Toast.LENGTH_SHORT).show();
-       displayShoppingCart();
+        Toast.makeText(getApplicationContext(), "Đã xóa!", Toast.LENGTH_SHORT).show();
+        displayShoppingCart();
    }
 }
