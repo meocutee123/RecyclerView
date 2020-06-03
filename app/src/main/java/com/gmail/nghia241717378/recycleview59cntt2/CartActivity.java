@@ -35,6 +35,7 @@ public class CartActivity extends AppCompatActivity {
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                iCartController.clearShoppingCart();
                 Intent intent = new Intent(CartActivity.this, ConfirmActivity.class);
                 startActivity(intent);
             }
@@ -75,5 +76,6 @@ public class CartActivity extends AppCompatActivity {
    private void clearShoppingCart(){
         iCartController.clearShoppingCart();
        Toast.makeText(getApplicationContext(), "Đã xóa!", Toast.LENGTH_SHORT).show();
+       displayShoppingCart();
    }
 }
