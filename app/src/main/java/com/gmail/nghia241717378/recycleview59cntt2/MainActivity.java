@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private class ProductViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
+    private class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView txtName, txtPrice, txtDescription;
         ImageView imgCart;
         Product product;
